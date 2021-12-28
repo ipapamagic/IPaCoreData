@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'IPaCoreData_Example' do
+  pod 'IPaCoreData', :path => '../'
+
+  target 'IPaCoreData_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
