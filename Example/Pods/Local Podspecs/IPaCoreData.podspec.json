@@ -1,0 +1,22 @@
+{
+  "name": "IPaCoreData",
+  "version": "0.1.0",
+  "summary": "A short description of IPaCoreData.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/IPa Chen/IPaCoreData",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "IPa Chen": "ipapamagic@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/IPa Chen/IPaCoreData.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "IPaCoreData/Classes/**/*"
+}

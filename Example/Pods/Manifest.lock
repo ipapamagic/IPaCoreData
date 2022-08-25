@@ -1,0 +1,16 @@
+PODS:
+  - IPaCoreData (0.1.0)
+
+DEPENDENCIES:
+  - IPaCoreData (from `../`)
+
+EXTERNAL SOURCES:
+  IPaCoreData:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  IPaCoreData: 483d14ffd939550e879256f220d61c059dcb6b13
+
+PODFILE CHECKSUM: bd849d8e8f8d09c56ab8dd327864235b0f589d9e
+
+COCOAPODS: 1.11.2

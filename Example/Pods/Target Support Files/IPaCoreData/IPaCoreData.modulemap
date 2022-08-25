@@ -1,0 +1,6 @@
+framework module IPaCoreData {
+  umbrella header "IPaCoreData-umbrella.h"
+
+  export *
+  module * { export * }
+}
