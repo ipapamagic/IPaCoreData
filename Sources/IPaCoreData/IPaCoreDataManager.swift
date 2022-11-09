@@ -246,50 +246,11 @@ open class IPaCoreDataManager :NSObject{
         workerMOC.parent = managedObjectContext
         return workerMOC
     }
-    
-    
-    @inlinable public func create<T:NSManagedObject>(_ properties:[String:Any]? = nil) -> T {
-        let entityDescription = NSEntityDescription.entity(forEntityName: String(describing: T.self), in: self.managedObjectContext)!
-        let entity = NSManagedObject(entity: entityDescription, insertInto: self.managedObjectContext) as! T
-        
-        if let properties = properties {
-            for key in properties.keys {
-                entity.setValue(properties[key], forKey: key)
-            }
-        }
-        
-        return entity
-    }
-    @inlinable public func create<T:NSManagedObject>(with uri:URL) -> T? {
-        guard let managedObjectID = self.managedObjectContext.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: uri) else {
-            return nil
-        }
-        return self.managedObjectContext.object(with: managedObjectID) as? T
+    @inlinable public func managedObjectID(forURIRepresentation url:URL,managedObjectContext:NSManagedObjectContext = IPaCoreDataManager.shared.managedObjectContext) -> NSManagedObjectID? {
+        return managedObjectContext.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url)
     }
     
-    @inlinable public func fetch<T:NSManagedObject>(_ predicate:NSPredicate? = nil,limit:Int = 0) throws -> [T] {
-        let request = T.fetchRequest(with: predicate, limit: limit)
-        return try self.fetch(request)
-    }
-    @inlinable public func fetch<T:NSManagedObject>(_ request:NSFetchRequest<T>) throws -> [T] {
-        return try self.managedObjectContext.fetch(request)
-    }
-    @inlinable public func fetchedResultsController<T:NSManagedObject>(with request:NSFetchRequest<T>,sectionNameKeyPath:String? = nil,cacheName:String? = nil) -> NSFetchedResultsController<T> {
-        return NSFetchedResultsController<T>(fetchRequest: request, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: cacheName)
-    }
-    @inlinable public func fetchedResultsController<T:NSManagedObject>(_ predicate:NSPredicate? = nil,sortDescriptors:[NSSortDescriptor],limit:Int = 0 ,sectionNameKeyPath:String? = nil,cacheName:String? = nil) -> NSFetchedResultsController<T> {
-        let request = T.fetchRequest(with: predicate,sortDescriptors:sortDescriptors, limit: limit)
-        return self.fetchedResultsController(with: request, sectionNameKeyPath: sectionNameKeyPath, cacheName: cacheName)
-    }
-    @inlinable public func count<T:NSManagedObject>(with fetchRequest:NSFetchRequest<T>) -> Int {
-        do {
-            return try self.managedObjectContext.count(for: fetchRequest)
-        }
-        catch let error as NSError {
-            IPaLog(error.localizedDescription)
-        }
-        return 0
-    }
+     
 }
 
 
